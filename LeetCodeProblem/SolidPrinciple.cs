@@ -9,61 +9,66 @@ namespace LeetCodeProblem
     public class SolidPrinciple
     {
      
-        /* Single Responsibility Principle (SRP)
+        
+
+    }
+
+    #region SRP
+    /* Single Responsibility Principle (SRP)
          ●	Definition: A class should have only one reason to change, meaning it should have only one responsibility.
          */
 
-        //SRP Violation Example
-        public class InvoiceSRP
+    //SRP Violation Example
+    public class InvoiceSRP
+    {
+        public void GenerateInvoice()
         {
-            public void GenerateInvoice()
-            {
-                // Code for generating invoice
-            }
-
-            public void SaveToDatabase()
-            {
-                // Code for saving invoice to the database
-            }
-
-            public void SendEmailNotification()
-            {
-                // Code for sending an email notification about the invoice
-            }
+            // Code for generating invoice
         }
 
-        /*
-         ●	Violation: The Invoice class handles three responsibilities: generating the invoice, saving it to the database, 
-        and sending notifications. Each of these could change for different reasons, violating SRP.
-         */
-
-
-        //Refactored to follow SRP:
-        public class Invoice
+        public void SaveToDatabase()
         {
-            public void GenerateInvoice()
-            {
-                // Code for generating invoice
-            }
+            // Code for saving invoice to the database
         }
 
-        public class InvoiceRepository
+        public void SendEmailNotification()
         {
-            public void SaveToDatabase(Invoice invoice)
-            {
-                // Code for saving invoice to the database
-            }
+            // Code for sending an email notification about the invoice
         }
-
-        public class NotificationService
-        {
-            public void SendEmailNotification(Invoice invoice)
-            {
-                // Code for sending an email notification about the invoice
-            }
-        }
-
     }
+
+    /*
+     ●	Violation: The Invoice class handles three responsibilities: generating the invoice, saving it to the database, 
+    and sending notifications. Each of these could change for different reasons, violating SRP.
+     */
+
+
+    //Refactored to follow SRP:
+    public class Invoice
+    {
+        public void GenerateInvoice()
+        {
+            // Code for generating invoice
+        }
+    }
+
+    public class InvoiceRepository
+    {
+        public void SaveToDatabase(Invoice invoice)
+        {
+            // Code for saving invoice to the database
+        }
+    }
+
+    public class NotificationService
+    {
+        public void SendEmailNotification(Invoice invoice)
+        {
+            // Code for sending an email notification about the invoice
+        }
+    }
+
+    #endregion
 
     #region OCP
     /*
