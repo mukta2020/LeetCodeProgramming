@@ -8,5 +8,10 @@ using System.Linq;
 //Console.WriteLine(b.Item1);
 //Console.WriteLine(b.Item2);
 
-Linq.Main();
+//Linq.Main();
+
+//Console.WriteLine(Anagram.areAnagrams(new char[] { 's', 'i', 't' }, new char[] { 's', 't', 'i' }));
+var strs = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
+Console.WriteLine(Anagram.GroupAnagrams(strs));
+
 
