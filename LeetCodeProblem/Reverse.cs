@@ -29,5 +29,19 @@ namespace LeetCodeProblem
             return flag * r;
 
         }
+
+        // for positive number
+        static public int Reverse1(int a)
+        {
+
+            int r = 0;
+            while (a > 0)
+            {
+                int rem = a % 10;
+                a = a / 10;
+                r = r * 10 + rem;
+            }
+            return r;
+        }
     }
 }
