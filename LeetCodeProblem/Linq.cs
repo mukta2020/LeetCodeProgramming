@@ -86,13 +86,20 @@ namespace LeetCodeProblem
                Ram (Age: 26)
 
              */
+            var avgAgePerDept = employeeList
+                                   .GroupBy(e => e.departmentId)
+                                   .Select(g => new {
+                                           DeptId = g.Key,
+                                           AvgAge = g.Average(e => e.Age)
+                                       });
+
             var groupedEmployees = employeeList
                                     .GroupBy(emp => emp.departmentId)
                                     .Select(g => new
-                                    {
-                                        DepartmentId = g.Key,
-                                        Employees = g.ToList()
-                                    });
+                                        {
+                                            DepartmentId = g.Key,
+                                            Employees = g.ToList()
+                                        });
 
             foreach (var group in groupedEmployees)
             {
@@ -172,12 +179,12 @@ namespace LeetCodeProblem
 
             // 7. GroupBy with Aggregates: Average age per department
 
-            var avgAgePerDept = employeeList
-            .GroupBy(e => e.departmentId)
-            .Select(g => new {
-                DeptId = g.Key,
-                AvgAge = g.Average(e => e.Age)
-            });
+            //var avgAgePerDept = employeeList
+            //.GroupBy(e => e.departmentId)
+            //.Select(g => new {
+            //    DeptId = g.Key,
+            //    AvgAge = g.Average(e => e.Age)
+            //});
 
             foreach (var dept in avgAgePerDept)
             {
