@@ -1,0 +1,53 @@
+# 185. Department Top Three Salaries
+
+ select d.Name as Department, a. Name as Employee, a. Salary   
+from (
+select *, dense_rank() over (partition by DepartmentId order by Salary desc) as DeptPayRank 
+from Employee e 
+) a 
+join Department d
+on a.DepartmentId = d. Id 
+where DeptPayRank <=3;
+
+#############################################################
+
+#184. Department wise Highest paid Employee
+
+select d.Name as Department, a.Name as Employee, a.Salary   
+from (
+select *, dense_rank() over (partition by DepartmentId  order by Salary desc) as rk 
+from Employee e 
+) a 
+join Department d
+on a.DepartmentId = d. Id 
+where rk =1 ;
+
+
+##########################################################################
+#  Customer Top Three Product
+
+select c.Name , p. Name as ProductName
+from (
+select *, dense_rank() over (partition by CustomerId order by createDate desc) as rk 
+from Product p 
+) a 
+join Customer c
+on a.Id = p. CustomerId
+where rk <=3;
+
+#################################################################
+
+# Display running total of salaries ordered by Id.
+
+SELECT Id, Name, Salary,
+       SUM(Salary) OVER (ORDER BY Id) AS RunningTotal
+FROM Employees;
+
+##############################################################
+# Department-wise Total & Average Salary
+
+SELECT Id, Name, Department, Salary,
+       SUM(Salary) OVER (PARTITION BY Department) AS DeptSalaryTotal,
+       AVG(Salary) OVER (PARTITION BY Department) AS DeptSalaryAvg
+FROM Employees;
+
