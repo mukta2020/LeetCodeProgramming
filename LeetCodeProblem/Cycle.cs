@@ -62,10 +62,10 @@ namespace LeetCodeProblem
         public int val;
         public ListNode next;
 
-        public ListNode(int val = 0, ListNode next = null)
+        public ListNode(int value = 0, ListNode nextNode = null)
         {
-            this.val = val;
-            this.next = next;
+            this.val = value;
+            this.next = nextNode;
         }
     }
 }
