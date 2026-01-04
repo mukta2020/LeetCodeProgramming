@@ -8,25 +8,27 @@ namespace LeetCodeProblem
 {
     public class Pascal
     {
+        // pascal row column fixed size JAVA type
+
         public static int[,] pascal(int n)
         {
-            int[,] a = new int[n, n];
+            int[,] m = new int[n, n];
 
-            a[0, 0] = 1;
+            m[0, 0] = 1;
 
-            for (int i = 1; i < n; i++)
+            for (int r = 1; r < n; r++)
             {
-                a[i, 0] = 1;  // 1st element of each row is always 0
+                m[r, 0] = 1;  // 1st element of each row is always 0
 
-                for (int j = 1; j < i; j++)
+                for (int c = 1; c < r; c++)
                 {
-                    a[i, j] = a[i - 1, j - 1] + a[i - 1, j];
+                    m[r, c] = m[r - 1, c - 1] + m[r - 1, c];
                 }
 
-                a[i, i] = 1; // laast element of each row is always 0
+                m[r, r] = 1; // last element of each row is always 0
             }
 
-            return a;
+            return m;
         }
 
         // pascal row fixed column dynamic
@@ -54,40 +56,40 @@ namespace LeetCodeProblem
 
         List<List<int>> pascalList(int numRows)
         {
-            List<List<int>> a = new List<List<int>>();
+            List<List<int>> m = new List<List<int>>();
 
-            for (int i = 0; i < numRows; i++)
+            for (int r = 0; r < numRows; r++)
             {
-                int[] innerArray = new int[i + 1];
-                innerArray[0] = 1;
+                int[] a = new int[r + 1];
+                a[0] = 1;
 
-                for (int j = 1; j < i; j++)
+                for (int c = 1; c < r; c++)
                 {
-                    innerArray[j] = a[i - 1][j - 1] + a[i - 1][j];
+                    a[c] = m[r - 1][c - 1] + m[r - 1][c];
                 }
-                innerArray[i] = 1;
-                a.Add(innerArray.ToList());
+                a[r] = 1;
+                m.Add(a.ToList());
             }
-            return a;
+            return m;
         }
 
         IList<IList<int>> pascalIList(int numRows)
         {
-            IList<IList<int>> a = new List<IList<int>>();
+            IList<IList<int>> m = new List<IList<int>>();
 
-            for (int i = 0; i < numRows; i++)
+            for (int r = 0; r < numRows; r++)
             {
-                int[] innerArray = new int[i + 1];
-                innerArray[0] = 1;
+                int[] a = new int[r + 1];
+                a[0] = 1;
 
-                for (int j = 1; j < i; j++)
+                for (int c = 1; c < r; c++)
                 {
-                    innerArray[j] = a[i - 1][j - 1] + a[i - 1][j];
+                    a[c] = m[r - 1][c - 1] + m[r - 1][c];
                 }
-                innerArray[i] = 1;
-                a.Add(innerArray);
+                a[r] = 1;
+                m.Add(a);
             }
-            return a;
+            return m;
         }
     }
 }
